@@ -1,4 +1,4 @@
 package com.sfjava.safetofly
 
-data class WeatherConditions(val foo: Int) {
+data class WeatherConditions(val temperature: Float) {
 }

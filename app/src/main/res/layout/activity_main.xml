@@ -22,9 +22,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:text="HEADER"
+            android:text="Coos Bay, 97420 OR"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -33,14 +34,32 @@
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="@{String.valueOf(viewmodel.weatherConditions.temperature)}"
+            android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="@+id/guideline"
             app:layout_constraintRight_toLeftOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="@+id/guideline4" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_wi_cloudy" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(viewmodel.weatherConditions.temperature)}" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="&#x2109;" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"

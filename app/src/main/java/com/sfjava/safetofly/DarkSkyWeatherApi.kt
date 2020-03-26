@@ -8,7 +8,7 @@ interface DarkSkyWeatherApi {
     /**
      * retrieve forecast weather conditions: https://api.darksky.net/forecast/[key]/[latitude],[longitude]
      **/
-    @GET(value = "forecast/{apiKey}/[{latitude},{longitude}")
+    @GET(value = "forecast/{apiKey}/{latitude},{longitude}")
     suspend fun retrieveForecastWeatherConditions(
         @Path("apiKey") apiKey: String,
         @Path("latitude") latitude: Double,

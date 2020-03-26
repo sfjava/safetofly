@@ -5,7 +5,7 @@ import android.app.Application;
 class SafeToFlyApplication: Application() {
 
     val weatherConditionsRepository by lazy {
-        MockWeatherConditionsRepository() // DarkSkyWeatherConditionsRepository()
+        DarkSkyWeatherConditionsRepository() // MockWeatherConditionsRepository()
     }
 
     // NOTE: repo impl could depend here on the app flavor... (e.g. for mocking)

@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.UnstableDefault
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Call
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import kotlinx.serialization.json.Json
 
 class DarkSkyWeatherConditionsRepository() : WeatherConditionsRepository {
 
     private val baseUrl = "https://api.darksky.net/"
     private val apiKey = "eee24d32820d02ac1c18feae1b1095f6" // FIXME: pull from build config
-    private val currentLatitude = 37.8267                   // FIXME: pull from GPS / user-settings
-    private val currentLongitude = -122.4233
+    private val currentLatitude = 43.3665                   // FIXME: Coos Bay lat/lon hardcoded here...
+    private val currentLongitude = -124.2179                // FIXME: should pull from GPS / user-settings
 
     val api by lazy { retrofit(okhttp(), baseUrl).create(DarkSkyWeatherApi::class.java) }
 
@@ -49,7 +49,7 @@ class DarkSkyWeatherConditionsRepository() : WeatherConditionsRepository {
         .callFactory(callFactory)
         .baseUrl(baseUrl)
         .addConverterFactory(
-            Json(JsonConfiguration(strictMode = false))
+            Json(JsonConfiguration(ignoreUnknownKeys = true))
                 .asConverterFactory("application/json".toMediaType())
         )
         .build()

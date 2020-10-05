@@ -3,14 +3,13 @@ package com.sfjava.safetofly
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.UnstableDefault
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
+import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3.Call
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import kotlinx.serialization.json.Json
 
 class DarkSkyWeatherConditionsRepository() : WeatherConditionsRepository {
 
@@ -44,12 +43,12 @@ class DarkSkyWeatherConditionsRepository() : WeatherConditionsRepository {
         )
     }
 
-    @OptIn(UnstableDefault::class)
+    @OptIn(kotlinx.serialization.ExperimentalSerializationApi::class)
     private fun retrofit(callFactory: Call.Factory, baseUrl: String) = Retrofit.Builder()
         .callFactory(callFactory)
         .baseUrl(baseUrl)
         .addConverterFactory(
-            Json(JsonConfiguration(ignoreUnknownKeys = true))
+            Json { ignoreUnknownKeys = true }
                 .asConverterFactory("application/json".toMediaType())
         )
         .build()
